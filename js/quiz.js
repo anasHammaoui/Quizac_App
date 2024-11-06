@@ -28,29 +28,82 @@ let questAns = {
 };
 // start quiz
 document.addEventListener("DOMContentLoaded",()=>{
+    // variables
     let htmlQuest = document.querySelector(".quest-quest");
     let htmlAnswers = document.querySelectorAll(".reponse");
-    let  clicked = false;
-    // async fun to check if answer is clicked
-    async function chosenAns(ans){
-         ans.addEventListener("click",()=>{
-            clicked = true;
+    let next = document.querySelector(".suivant");
+    let num=0;
+    let score = document.querySelector(".score-counter");
+    let calQest = document.querySelector(".quest-num");
+    let correctAns = 0;
+    let clicked = false;
+    let counter = 19;
+    let htmlCounter = document.querySelector(".counter");
+    let interval;
+    // asynchrones function to show quest after click on suivant
+    async function showQuests(index){
+        counter = 20;
+        htmlQuest.textContent = questAns.quests[index];
+        htmlAnswers.forEach((ansHtml,ansIndex)=>{
+            ansHtml.textContent = questAns.answers[index][ansIndex];
+            ansHtml.style.backgroundColor = "#004BAC";
+        })
+        score.innerHTML = `${correctAns}/15`;
+        calQest.innerHTML = `Question ${num+1}/15`;
+        clearInterval(interval);
+        // wait till suivant/ question complete and switch to nex quest
+        await ansChosed(index);
+
+    }
+    // function clicked answer and check if it correct...
+    function ansChosed(i){
+      return  new Promise((resolve) => {
+            htmlAnswers.forEach((ans,ansIndex)=>{{
+                // remove the old clicks
+                ans.removeEventListener("click",()=>{});
+                // make this chages when click the answer
+                ans.addEventListener("click",()=>{
+                    // check if clicked is false to skip getting multiple correct answs
+                   if (clicked == false){
+        clearInterval(interval);
+                    ans.style.backgroundColor = "#ddd";
+                    // check if the answer is correct
+                    if (ansIndex === questAns.correct[i]){
+                        correctAns++;
+                        console.log(correctAns);
+                    } else{
+                        console.log("false");
+                    }
+                    // get clicked to true to not click the answer another time
+                    clicked = true;
+                   }
+                })
+            }})
+            // get clicked to false to can answer to the next question
+            clicked= false;
+            // counter to go to the next question if the time  is out
+             interval = setInterval(()=>{
+                htmlCounter.textContent = `${counter} Sec`;
+                counter--;
+                if (counter < 0){
+                    counter = 19;
+                    resolve();
+                }
+            },1000);
+            // go the next question
+            next.addEventListener("click",()=>{
+                // achieve the promise to go to the next question
+                resolve();
+            })
         })
     }
     // show questions
-    questAns.quests.forEach((quest,num)=>{
-        htmlQuest.textContent = quest;
-        htmlAnswers.forEach((ansHtml,ansIndex)=>{
-            ansHtml.textContent = questAns.answers[num][ansIndex];
-            console.log(quest,questAns.answers[num][ansIndex] )
-        })
-            if (clicked != true){
-                htmlAnswers.forEach(ans=>{
-                     chosenAns(ans);
-                    console.log("clicked");
-                    console.log(clicked)
-                })
-            }
-        clicked = false;
-    })
+    // function to start the quiz and show question one by one
+       async function start(){
+        while(num < questAns.quests.length){
+            await showQuests(num);
+                 num++;
+             }
+       }
+       start();
 })
