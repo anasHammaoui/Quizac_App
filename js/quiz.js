@@ -114,9 +114,12 @@ document.addEventListener("DOMContentLoaded",()=>{
                     next.textContent = "See Result";
                     next.style.cursor = "pointer";
                     next.style.backgroundColor = "#004BAC";
-                    
+                    next.addEventListener("click",()=>{
+                        window.location.href = "../fin.html";
+                    })
                 }
              }
        }
        start();
 })
+localStorage.setItem("totalScore",correctAns);
