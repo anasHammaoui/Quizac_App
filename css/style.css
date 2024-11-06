@@ -7,7 +7,7 @@ body{
     text-align: center  ;
     /*   font-family: "Poppins", sans-serif; */
 }
-.container{padding:0 10px;max-width:800px;margin: auto;}
+.container{padding:0 10px;max-width:640px;margin: auto;}
 /* header */
 header{
     display: flex;
@@ -57,6 +57,7 @@ header i{
     margin: 10px auto;
     text-align: center;
     transition: 1s ease;
+    cursor: pointer;
 }
 .commencer:hover{
     background-color: #0460d9;
@@ -90,11 +91,15 @@ header i{
         margin: 10px auto;
         text-align: center;
         transition: 1s ease;
+        cursor: pointer;
     }
 }
 /* quiz */
 .quiz{
     justify-content: space-between;
+    padding:0 10px;
+    max-width: 800px;
+    margin:auto
 }
 .quiz div{display: flex; align-items: center;}
 .quiz div i {display: flex; align-items: center}
@@ -107,7 +112,7 @@ header i{
         margin: auto;
     }
 }
-.reponse, .suivant{
+.reponse, .suivant,.save,.redemarrer{
     text-decoration: none;
     color: #fff;
     background-color: var(--main-color);
@@ -121,11 +126,41 @@ header i{
     transition: 1s ease;
     cursor: pointer;
 }
-.reponse:hover,.suivant:hover{
+.reponse:hover,.suivant:hover, .save:hover,.redemarrer:hover{
     background-color: #0460d9;
 }
-.suivant{margin-right:0 ;margin-top:40px}
+.suivant{margin-right:10px ;margin-top:40px}
 @media screen and (max-width:500px){
     .reponse{width: 180px;}
     .suivant{width:70px}
+}
+/* ********************Fin QUiiz ***************/
+
+.result{
+    font-size: 23px;
+    max-width: 292px;
+    margin: 10px auto;
+}
+.result-box{
+    width:200px;
+    height: 200px;
+    background-color:#00AC45;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    margin:20px auto
+}
+.fin-buttons{
+    display: flex;
+    justify-content: space-between;
+}
+@media screen and (max-width:630px){
+    .fin-buttons{
+        flex-direction: column;
+    }
+}
+.save, .redemarrer{
+    width:150px
 }
