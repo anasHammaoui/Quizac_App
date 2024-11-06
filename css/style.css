@@ -126,10 +126,15 @@ header i{
     transition: 1s ease;
     cursor: pointer;
 }
-.reponse:hover,.suivant:hover, .save:hover,.redemarrer:hover{
+.reponse:hover, .save:hover,.redemarrer:hover{
     background-color: #0460d9;
 }
-.suivant{margin-right:10px ;margin-top:40px}
+.suivant{
+    margin-right:10px ;
+    margin-top:40px;
+    cursor: no-drop;
+    background-color: #ddd;
+}
 @media screen and (max-width:500px){
     .reponse{width: 180px;}
     .suivant{width:70px}

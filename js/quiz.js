@@ -76,11 +76,15 @@ document.addEventListener("DOMContentLoaded",()=>{
                     }
                     // get clicked to true to not click the answer another time
                     clicked = true;
+                    next.style.cursor = "pointer";
+                    next.style.backgroundColor = "#004BAC";
                    }
                 })
             }})
-            // get clicked to false to can answer to the next question
+            // get clicked to false to can answer to the next question and disable suivant button
             clicked= false;
+            next.style.cursor = "no-drop";
+            next.style.backgroundColor = "#ddd";
             // counter to go to the next question if the time  is out
              interval = setInterval(()=>{
                 htmlCounter.textContent = `${counter} Sec`;
@@ -93,7 +97,9 @@ document.addEventListener("DOMContentLoaded",()=>{
             // go the next question
             next.addEventListener("click",()=>{
                 // achieve the promise to go to the next question
-                resolve();
+                if (clicked == true) {
+                    resolve();
+                }
             })
         })
     }
@@ -103,6 +109,13 @@ document.addEventListener("DOMContentLoaded",()=>{
         while(num < questAns.quests.length){
             await showQuests(num);
                  num++;
+                //  show fin page
+                if (num == questAns.quests.length -1){
+                    next.textContent = "See Result";
+                    next.style.cursor = "pointer";
+                    next.style.backgroundColor = "#004BAC";
+                    
+                }
              }
        }
        start();
