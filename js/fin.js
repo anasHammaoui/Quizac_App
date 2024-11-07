@@ -23,9 +23,11 @@ if (finalScore <= 3) {
     frenchLevel.innerHTML = "C1";
 }
 // add the final score to local storage
-var allScores = JSON.parse(localStorage.getItem("allScores")) || [];
+var allScores = JSON.parse(localStorage.getItem("allScores")) || {scores: [], level: []};
 var saveButton = document.querySelector(".save");
 saveButton.addEventListener("click",()=>{
-    allScores.push(finalScore);
+    allScores.scores.push(finalScore);
+    allScores.level.push(frenchLevel.textContent);
 localStorage.setItem("allScores",JSON.stringify(allScores));
+window.location.href = "./index.html";
 })

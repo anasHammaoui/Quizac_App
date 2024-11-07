@@ -63,7 +63,7 @@ header i{
     background-color: #0460d9;
 }
 
-@media screen and (max-width:500px){
+@media screen and (max-width:776px){
     .home-heading .app-name{
         font-size: 40px;
         font-family: "Lemon", serif !important;
@@ -112,7 +112,7 @@ header i{
         margin: auto;
     }
 }
-.reponse, .suivant,.save,.redemarrer{
+.reponse, .suivant,.save,.redemarrer,.delete,.menu{
     text-decoration: none;
     color: #fff;
     background-color: var(--main-color);
@@ -126,7 +126,7 @@ header i{
     transition: 1s ease;
     cursor: pointer;
 }
-.reponse:hover, .save:hover,.redemarrer:hover{
+.reponse:hover, .save:hover,.redemarrer:hover, .delete:hover,.menu:hover{
     background-color: #0460d9;
 }
 .suivant{
@@ -135,7 +135,7 @@ header i{
     cursor: no-drop;
     background-color: #ddd;
 }
-@media screen and (max-width:500px){
+@media screen and (max-width:776px){
     .reponse{width: 180px;}
     .suivant{width:70px}
 }
@@ -157,15 +157,42 @@ header i{
     color: #fff;
     margin:20px auto
 }
-.fin-buttons{
+.fin-buttons, .saved-buttons{
     display: flex;
     justify-content: space-between;
 }
-@media screen and (max-width:630px){
+@media screen and (max-width:776px){
     .fin-buttons{
         flex-direction: column;
     }
 }
 .save, .redemarrer{
     width:150px
+}
+/* results page */
+.saved.container,.saved-buttons.container{
+    max-width:500px;
+}
+.saved{
+    margin-top:120px;
+    text-align:unset;
+    text-align: left;
+    min-height: calc(100vh - 300px);
+    padding:0 30px;
+}
+.saved-box {
+    font-weight: bold;
+    font-size:24px;
+    display: flex;
+    justify-content: space-between;
+}
+.saved-buttons a{
+    width:120px;
+    margin:20px 0;
+}
+@media screen and (max-width:776px){
+    .saved-buttons{
+        flex-direction: column;
+    }
+    .saved-buttons a{margin:10px auto}
 }
