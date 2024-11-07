@@ -26,7 +26,24 @@ let questAns = {
 ],
     correct: [1,2,1,0,0,1,2,0,1,1]
 };
-
+// show diffrent auestion every time
+for (let i = 0; i < questAns.quests.length;i++){
+        let rendomPlace = Math.floor(Math.random()*questAns.quests.length);
+        console.log(rendomPlace);
+        // shuffle quests
+        let tempQuest = questAns.quests[i];
+        questAns.quests[i] = questAns.quests[rendomPlace];
+        questAns.quests[rendomPlace] = tempQuest;
+        // shuffle answers
+        let tempAns = questAns.answers[i];
+        questAns.answers[i] = questAns.answers[rendomPlace];
+        questAns.answers[rendomPlace] = tempAns;
+        // shuffle correct
+        let tempCorrect = questAns.correct[i];
+        questAns.correct[i] = questAns.correct[rendomPlace];
+        questAns.correct[rendomPlace] = tempCorrect;
+}
+console.log(questAns.quests);
 // i let this global cause i gonna ue it to store it in local storage
 // start quiz
 document.addEventListener("DOMContentLoaded",()=>{
