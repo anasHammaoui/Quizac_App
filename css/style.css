@@ -112,7 +112,7 @@ header i{
         margin: auto;
     }
 }
-.reponse, .suivant,.save,.redemarrer,.delete,.menu{
+.reponse, .suivant,.save,.redemarrer,.delete,.menu,.back{
     text-decoration: none;
     color: #fff;
     background-color: var(--main-color);
@@ -129,13 +129,20 @@ header i{
 .reponse:hover, .save:hover,.redemarrer:hover, .delete:hover,.menu:hover{
     background-color: #0460d9;
 }
-.suivant{
+.suivant-div{display: flex;}
+.suivant,.back{
     margin-right:10px ;
     margin-top:40px;
     cursor: no-drop;
     background-color: #ddd;
 }
+.back {
+    background-color: var(--main-color);
+    cursor: pointer;
+    display: none;
+}
 @media screen and (max-width:776px){
+.suivant-div{flex-direction: column;}
     .reponse{width: 180px;}
     .suivant{width:70px}
 }

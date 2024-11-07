@@ -26,6 +26,7 @@ let questAns = {
 ],
     correct: [1,2,1,0,0,1,2,0,1,1]
 };
+
 // i let this global cause i gonna ue it to store it in local storage
 // start quiz
 document.addEventListener("DOMContentLoaded",()=>{
@@ -41,6 +42,7 @@ let correctAns = 0;
     let counter = 19;
     let htmlCounter = document.querySelector(".counter");
     let interval;
+    let back = document.querySelector(".back");
     // asynchrones function to show quest after click on suivant
     async function showQuests(index){
         counter = 20;
@@ -55,6 +57,7 @@ let correctAns = 0;
         localStorage.setItem("totalScore",correctAns);
         // wait till suivant/ question complete and switch to nex quest
         await ansChosed();
+
     }
     // function clicked answer and check if it correct...
     function ansChosed(){
@@ -67,11 +70,14 @@ let correctAns = 0;
                     // check if clicked is false to skip getting multiple correct answs
                    if (clicked == false){
         clearInterval(interval);
-                    ans.style.backgroundColor = "#ddd";
+                    // ans.style.backgroundColor = "#ddd";
                     // check if the answer is correct
                     if (ansIndex == questAns.correct[num]){
+                        ans.style.backgroundColor = "green";
                         correctAns++;
                     } else{
+                        ans.style.backgroundColor = "red";
+                        htmlAnswers[questAns.correct[num]].style.backgroundColor = "green";
                     }
                     // get clicked to true to not click the answer another time
                     clicked = true;
