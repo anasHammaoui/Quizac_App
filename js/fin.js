@@ -1,7 +1,9 @@
 // get final score
-let finalScore = localStorage.getItem("totalScore") || 0;
+let finalScore = localStorage.getItem("totalScore");
 // show final score
+if (finalScore != null) {
 document.querySelector(".resultat").innerHTML = `${finalScore}/10`;
+}
 let frenchLevel = document.querySelector(".nivau");
 let resultBox = document.querySelector(".result-box");
 // add the french level by score+ change box color
@@ -21,9 +23,9 @@ if (finalScore <= 3) {
     frenchLevel.innerHTML = "C1";
 }
 // add the final score to local storage
-let allScores = [];
-let saveButton = document.querySelector(".save");
+var allScores = JSON.parse(localStorage.getItem("allScores")) || [];
+var saveButton = document.querySelector(".save");
 saveButton.addEventListener("click",()=>{
     allScores.push(finalScore);
-    localStorage.setItem("allScores",allScores);
+localStorage.setItem("allScores",JSON.stringify(allScores));
 })

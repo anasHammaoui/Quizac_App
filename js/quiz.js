@@ -26,6 +26,7 @@ let questAns = {
 ],
     correct: [1,2,1,0,0,1,2,0,1,1]
 };
+// i let this global cause i gonna ue it to store it in local storage
 // start quiz
 document.addEventListener("DOMContentLoaded",()=>{
     // variables
@@ -35,7 +36,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     let num=0;
     let score = document.querySelector(".score-counter");
     let calQest = document.querySelector(".quest-num");
-    let correctAns = 0;
+let correctAns = 0;
     let clicked = false;
     let counter = 19;
     let htmlCounter = document.querySelector(".counter");
@@ -49,14 +50,14 @@ document.addEventListener("DOMContentLoaded",()=>{
             ansHtml.style.backgroundColor = "#004BAC";
         })
         score.innerHTML = `${correctAns}/15`;
-        calQest.innerHTML = `Question ${num+1}/15`;
+        calQest.innerHTML = `Question ${num+1}/10`;
         clearInterval(interval);
+        localStorage.setItem("totalScore",correctAns);
         // wait till suivant/ question complete and switch to nex quest
-        await ansChosed(index);
-
+        await ansChosed();
     }
     // function clicked answer and check if it correct...
-    function ansChosed(i){
+    function ansChosed(){
       return  new Promise((resolve) => {
             htmlAnswers.forEach((ans,ansIndex)=>{{
                 // remove the old clicks
@@ -68,11 +69,9 @@ document.addEventListener("DOMContentLoaded",()=>{
         clearInterval(interval);
                     ans.style.backgroundColor = "#ddd";
                     // check if the answer is correct
-                    if (ansIndex === questAns.correct[i]){
+                    if (ansIndex == questAns.correct[num]){
                         correctAns++;
-                        console.log(correctAns);
                     } else{
-                        console.log("false");
                     }
                     // get clicked to true to not click the answer another time
                     clicked = true;
@@ -122,4 +121,3 @@ document.addEventListener("DOMContentLoaded",()=>{
        }
        start();
 })
-localStorage.setItem("totalScore",correctAns);
