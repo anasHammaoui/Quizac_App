@@ -29,16 +29,17 @@ let questAns = {
 };
 // show diffrent auestion every time
 for (let i = 0; i < questAns.quests.length;i++){
+    // shuffle quests
         let rendomPlace = Math.floor(Math.random()*questAns.quests.length);
         // shuffle quests
         let tempQuest = questAns.quests[i];
         questAns.quests[i] = questAns.quests[rendomPlace];
         questAns.quests[rendomPlace] = tempQuest;
-        // shuffle answers
+        // shuffle quest answers
         let tempAns = questAns.answers[i];
         questAns.answers[i] = questAns.answers[rendomPlace];
         questAns.answers[rendomPlace] = tempAns;
-        // shuffle correct
+        // shuffle quest correct
         let tempCorrect = questAns.correct[i];
         questAns.correct[i] = questAns.correct[rendomPlace];
         questAns.correct[rendomPlace] = tempCorrect;
@@ -127,6 +128,9 @@ let correctAns = 0;
                     htmlAnswers[questAns.correct[num]].style.backgroundColor = "green";
                     next.style.cursor = "pointer";
                     next.style.backgroundColor = "#004BAC";
+                    if (questAns.selected[num] == undefined || questAns.selected[num == null]) {
+                        questAns.selected[num] = -1;
+                    }
                 }
             },1000);
             // go the next question
