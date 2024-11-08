@@ -137,7 +137,7 @@ let correctAns = 0;
                     next.style.cursor = "pointer";
                     next.style.backgroundColor = "#004BAC";
                     next.addEventListener("click",()=>{
-                        window.location.href = "../fin.html";
+                        window.location.href = "./fin.html";
                     })
                 }
              }

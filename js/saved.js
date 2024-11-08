@@ -6,7 +6,7 @@ if (savedScores.scores != undefined || savedScores.scores != null) {
     savedScores.scores.forEach((_,i)=>{
         savedContainer.insertAdjacentHTML("afterbegin",`
        <h2 class="saved-box">
-       <span class="saved-level">Niveau ${savedScores.level[i]} :</span> <span class="saved-score">"${savedScores.scores[i]}"</span>
+       <span class="saved-level">Niveau ${savedScores.level[i]} :</span> <span class="saved-score">"${savedScores.scores[i]}/10"</span>
        </h2> 
         ` );
     })
