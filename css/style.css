@@ -203,3 +203,26 @@ header i{
     }
     .saved-buttons a{margin:10px auto}
 }
+/* rapport */
+
+.rapport-header {
+    display: flex;
+    justify-content: space-between;
+    margin:20px auto 50px auto;
+}
+.rapport-header div{
+    width:100px;
+    height: 40px;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    background-color: var(--main-color);
+}
+.rapport{
+    text-align: left;
+}
+.quest-box{margin-bottom: 30px;}
+.quest-box h3{margin-left:20px}
+.quest-box h3 span{font-weight: 500;} 

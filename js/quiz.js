@@ -24,12 +24,12 @@ let questAns = {
         ["a) et","b) donc","c) mais"],
         ["a) lent","b) vite ","c) tard"]
 ],
-    correct: [1,2,1,0,0,1,2,0,1,1]
+    correct: [1,2,1,0,0,1,2,0,1,1],
+    selected: []
 };
 // show diffrent auestion every time
 for (let i = 0; i < questAns.quests.length;i++){
         let rendomPlace = Math.floor(Math.random()*questAns.quests.length);
-        console.log(rendomPlace);
         // shuffle quests
         let tempQuest = questAns.quests[i];
         questAns.quests[i] = questAns.quests[rendomPlace];
@@ -43,7 +43,6 @@ for (let i = 0; i < questAns.quests.length;i++){
         questAns.correct[i] = questAns.correct[rendomPlace];
         questAns.correct[rendomPlace] = tempCorrect;
 }
-console.log(questAns.quests);
 // i let this global cause i gonna ue it to store it in local storage
 // start quiz
 document.addEventListener("DOMContentLoaded",()=>{
@@ -59,20 +58,23 @@ let correctAns = 0;
     let counter = 19;
     let htmlCounter = document.querySelector(".counter");
     let interval;
-    let back = document.querySelector(".back");
     // asynchrones function to show quest after click on suivant
     async function showQuests(index){
         counter = 20;
+        // show questt and answers
         htmlQuest.textContent = questAns.quests[index];
         htmlAnswers.forEach((ansHtml,ansIndex)=>{
             ansHtml.textContent = questAns.answers[index][ansIndex];
             ansHtml.style.backgroundColor = "#004BAC";
         })
+        // update the score and question number
         score.innerHTML = `${correctAns}/15`;
         calQest.innerHTML = `Question ${num+1}/10`;
+        // clear the inteval to start the counter again
         clearInterval(interval);
+        // set the new total score to loca storage
         localStorage.setItem("totalScore",correctAns);
-        // wait till suivant/ question complete and switch to nex quest
+        // wait till suivant/ question complete and switch to nex quests;
         await ansChosed();
 
     }
@@ -92,10 +94,17 @@ let correctAns = 0;
                     if (ansIndex == questAns.correct[num]){
                         ans.style.backgroundColor = "green";
                         correctAns++;
+                        // add the selected answer to selected in object
+                        questAns.selected.push(ansIndex);
                     } else{
                         ans.style.backgroundColor = "red";
                         htmlAnswers[questAns.correct[num]].style.backgroundColor = "green";
+                        // add the selected answer to selected in object
+                        questAns.selected.push(ansIndex);
                     }
+                    // add the selected answer to the local storage
+                    localStorage.setItem("allQuests",JSON.stringify(questAns));
+                    console.log(JSON.parse(localStorage.getItem("allQuests")));
                     // get clicked to true to not click the answer another time
                     clicked = true;
                     next.style.cursor = "pointer";
@@ -113,7 +122,11 @@ let correctAns = 0;
                 counter--;
                 if (counter < 0){
                     counter = 19;
-                    resolve();
+                    clicked = true;
+                    clearInterval(interval);
+                    htmlAnswers[questAns.correct[num]].style.backgroundColor = "green";
+                    next.style.cursor = "pointer";
+                    next.style.backgroundColor = "#004BAC";
                 }
             },1000);
             // go the next question
