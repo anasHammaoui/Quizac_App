@@ -68,7 +68,7 @@ let correctAns = 0;
             ansHtml.style.backgroundColor = "#004BAC";
         })
         // update the score and question number
-        score.innerHTML = `${correctAns}/15`;
+        score.innerHTML = `${correctAns}/10`;
         calQest.innerHTML = `Question ${num+1}/10`;
         // clear the inteval to start the counter again
         clearInterval(interval);
