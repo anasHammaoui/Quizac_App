@@ -73,8 +73,6 @@ let correctAns = 0;
         calQest.innerHTML = `Question ${num+1}/10`;
         // clear the inteval to start the counter again
         clearInterval(interval);
-        // set the new total score to loca storage
-        localStorage.setItem("totalScore",correctAns);
         // wait till suivant/ question complete and switch to nex quests;
         await ansChosed();
 
@@ -95,6 +93,8 @@ let correctAns = 0;
                     if (ansIndex == questAns.correct[num]){
                         ans.style.backgroundColor = "green";
                         correctAns++;
+                    // set the new total score to loca storage
+        localStorage.setItem("totalScore",correctAns);
                         // add the selected answer to selected in object
                         questAns.selected.push(ansIndex);
                     } else{

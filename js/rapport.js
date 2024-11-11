@@ -2,6 +2,8 @@
 let rapportContainer = document.querySelector(".rapport");
 // getting quests and data from local storage
 let allQuests = JSON.parse(localStorage.getItem("allQuests"));
+// document.querySelector(".rapport-score").innerHtml = ;
+document.querySelector(".rapport-score").textContent = localStorage.getItem("totalScore") + '/10';
 // show the data from local storage to rapport page
 allQuests.quests.forEach((q,i)=>{
     // if the answer is not correct
