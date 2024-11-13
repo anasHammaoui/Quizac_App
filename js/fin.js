@@ -22,6 +22,7 @@ if (finalScore <= 3) {
 }else if (finalScore > 9){
     frenchLevel.innerHTML = "C1";
 }
+localStorage.setItem("level",document.querySelector(".nivau").textContent);
 // add the final score to local storage
 var allScores = JSON.parse(localStorage.getItem("allScores")) || {scores: [], level: []};
 var saveButton = document.querySelector(".save");
